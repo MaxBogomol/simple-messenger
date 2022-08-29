@@ -3,7 +3,7 @@ sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 #server = input("Сервер --> ")
 #port = input("Порт --> ")
 #if server=="":
-server="0.0.0.0"
+server="54.73.53.134"
 #if port=="":
 port=1883
 port=int(port)
