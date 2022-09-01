@@ -179,7 +179,7 @@ while True:
                         usertag_header = f"{len(usertag):<{HEADER_LENGTH}}".encode('utf-8')
                         client_socket.send(socket_header + connect_header + usertag_header + connect + usertag)
 
-                        print('New registration from {}:{}, username: {}#{}'.format(*client_address, username, usertag))
+                        print('New registration from {}:{}, username: {}#{}'.format(*client_address, username, usertag.decode('utf-8')))
                     else:
                         usertag = usertag.encode('utf-8')
                         connect = "0".encode('utf-8')
