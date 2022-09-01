@@ -312,6 +312,7 @@ class SimpleMessenger(QWidget):
                             client_socket.setblocking(False)
 
                             client_socket.send(f"{100:<{HEADER_LENGTH}}".encode('utf-8'))
+                            type_connect = 3
                         except:
                             print('Connection closed by the server')
                             sys.exit()
@@ -363,6 +364,10 @@ class SimpleMessenger(QWidget):
                                 self.send_text.setPlaceholderText(f'{my_username}#{my_usertag} > ')
                             else:
                                 type_connect = 0
+                    if type_connect == 3:
+                        type_connect = 1
+                        self.connect_login()
+                        is_login = False
                                 
             except IOError as e:
                 if e.errno != errno.EAGAIN and e.errno != errno.EWOULDBLOCK:
