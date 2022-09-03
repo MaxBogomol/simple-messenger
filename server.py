@@ -147,6 +147,10 @@ def receive_message(client_socket):
         return False
 
 def send_users_data(client_socket):
+    if not os.path.isfile('./users.json'):
+        my_file = open('./users.json', 'w')
+        my_file.write('{}')
+        my_file.close()
     with open('users.json','r', encoding="utf-8") as f:
         users = json.load(f)
         for ID in users.keys():
@@ -163,6 +167,10 @@ def send_users_data(client_socket):
                 client_socket.send(socket_header + userid_header + username_header + usertag_header + userid + username + usertag)
 
 def send_messages_data(client_socket):
+    if not os.path.isfile('./messages.json'):
+        my_file = open('./messages.json', 'w')
+        my_file.write('{}')
+        my_file.close()
     with open('messages.json','r', encoding="utf-8") as f:
         users = json.load(f)
         for ID in users.keys():
@@ -179,6 +187,10 @@ def send_messages_data(client_socket):
                 client_socket.send(socket_header + userid_header + userid + messageid_header + messageid + data_header + data)
 
 def send_messages_data_end(client_socket, count):
+    if not os.path.isfile('./messages.json'):
+        my_file = open('./messages.json', 'w')
+        my_file.write('{}')
+        my_file.close()
     with open('messages.json','r', encoding="utf-8") as f:
         users = json.load(f)
         total = users["total"] - count
@@ -197,6 +209,10 @@ def send_messages_data_end(client_socket, count):
                     client_socket.send(socket_header + userid_header + userid + messageid_header + messageid + data_header + data)
 
 def send_messages_data_count_up(client_socket, message_id, count):
+    if not os.path.isfile('./messages.json'):
+        my_file = open('./messages.json', 'w')
+        my_file.write('{}')
+        my_file.close()
     with open('messages.json','r', encoding="utf-8") as f:
         users = json.load(f)
         if message_id - count < 0:
