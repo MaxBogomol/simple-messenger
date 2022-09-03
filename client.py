@@ -361,7 +361,6 @@ class SimpleMessenger(QWidget):
             try:
                 while True:
                     socket_header = client_socket.recv(HEADER_LENGTH)
-                    #print(socket_header.decode('utf-8'))
 
                     if not len(socket_header):
                         try:
@@ -387,7 +386,7 @@ class SimpleMessenger(QWidget):
 
                             messageid_header = client_socket.recv(HEADER_LENGTH)
                             messageid_length = int(messageid_header.decode('utf-8').strip())
-                            messageid = client_socket.recv(userid_length).decode('utf-8')
+                            messageid = client_socket.recv(messageid_length).decode('utf-8')
 
                             message_header = client_socket.recv(HEADER_LENGTH)
                             message_length = int(message_header.decode('utf-8').strip())
@@ -594,4 +593,4 @@ if __name__ == '__main__':
     w = SimpleMessenger()
     sys.exit(app.exec_())
 
-#nuitka --standalone --onefile --plugin-enable=pyqt5 client_gui.py
+#nuitka --standalone --onefile --plugin-enable=pyqt5 --windows-icon-from-ico=icon.ico --include-data-file=icon.ico=icon.ico client_gui.py
